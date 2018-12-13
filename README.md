@@ -2,15 +2,15 @@
 Dandelion Starter - React Admin Dashboard Template
 
 # installation
-npm install
+`npm install`
 
 # start project
-npm start
+`npm start`
 
 # build production
-npm run build
+`npm run build`
 
 after that
 
 # run production
-npm run start:prod
+`npm run start:prod`
