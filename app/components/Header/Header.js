@@ -51,10 +51,11 @@ class Header extends React.Component {
   };
 
   turnMode = mode => {
+    const { changeMode } = this.props;
     if (mode === 'light') {
-      this.props.changeMode('dark');
+      changeMode('dark');
     } else {
-      this.props.changeMode('light');
+      changeMode('light');
     }
   };
 
@@ -72,7 +73,7 @@ class Header extends React.Component {
       openGuide,
       history
     } = this.props;
-    const { fullScreen } = this.state;
+    const { fullScreen, open } = this.state;
 
     const setMargin = (sidebarPosition) => {
       if (sidebarPosition === 'right-sidebar') {
@@ -94,7 +95,7 @@ class Header extends React.Component {
           )
         }
       >
-        <Toolbar disableGutters={!this.state.open}>
+        <Toolbar disableGutters={!open}>
           <Button
             variant="fab"
             mini

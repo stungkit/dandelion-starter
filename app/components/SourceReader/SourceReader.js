@@ -15,7 +15,7 @@ import Close from '@material-ui/icons/Close';
 import Icon from '@material-ui/core/Icon';
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
-import codePreview from './../../config/codePreview';
+import codePreview from '../../config/codePreview';
 
 const url = '/api/docs?src=';
 
@@ -86,17 +86,19 @@ class SourceReader extends Component {
     raws: [],
     open: false,
     loading: false,
-    style: this.props.mode
+    style: this.props.mode // eslint-disable-line
   };
 
   sourceOpen = () => {
-    const name = this.props.componentName;
+    const { componentName } = this.props;
+    const { open } = this.state;
+    const name = componentName;
     this.setState({ loading: true }, () => {
       Axios.get(url + name).then(result => this.setState({
         raws: result.data.records,
         loading: false
       }));
-      this.setState({ open: !this.state.open });
+      this.setState({ open: !open });
     });
   };
 
@@ -111,23 +113,25 @@ class SourceReader extends Component {
       loading,
       style
     } = this.state;
-    const { classes } = this.props;
+    const { classes, componentName } = this.props;
     registerLanguage('jsx', jsx);
     if (codePreview.enable) {
       return (
         <div>
           <Button onClick={this.sourceOpen} color="secondary" className={classes.button} size="small">
-            { open ?
-              <Close className={classNames(classes.leftIcon, classes.iconSmall)} /> :
+            { open ? (
+              <Close className={classNames(classes.leftIcon, classes.iconSmall)} />
+            ) : (
               <Code className={classNames(classes.leftIcon, classes.iconSmall)} />
-            }
+            )}
             { open ? 'Hide Code' : 'Show Code' }
           </Button>
           <section className={classNames(classes.source, open ? classes.open : '')}>
             <div className={classes.src}>
               <p>
                 <Icon className="description">description</Icon>
-                src/app/{this.props.componentName}
+                src/app/
+                {componentName}
               </p>
               <div className={classes.toggleContainer}>
                 <ToggleButtonGroup value={style} exclusive onChange={this.handleStyle}>
@@ -140,18 +144,16 @@ class SourceReader extends Component {
                 </ToggleButtonGroup>
               </div>
             </div>
-            {loading &&
+            {loading && (
               <LinearProgress color="secondary" className={classes.preloader} />
-            }
-            {raws.map((raw, index) =>
-              ([
-                <div key={index.toString()}>
-                  <SyntaxHighlighter language="jsx" style={style === 'dark' ? darkStyle : lightStyle} showLineNumbers="true">
-                    {raw.source.toString()}
-                  </SyntaxHighlighter>
-                </div>
-              ])
             )}
+            {raws.map((raw, index) => ([
+              <div key={index.toString()}>
+                <SyntaxHighlighter language="jsx" style={style === 'dark' ? darkStyle : lightStyle} showLineNumbers="true">
+                  {raw.source.toString()}
+                </SyntaxHighlighter>
+              </div>
+            ]))}
           </section>
         </div>
       );

@@ -80,7 +80,9 @@ class Maintenance extends React.Component {
             </Hidden>
           </div>
           <Typography variant="h4" className={classes.title} gutterBottom>Under maintenance</Typography>
-          <Typography variant="subtitle1" className={classes.subtitle}>Our website is under maintenance. We{"'"}ll be back shortly</Typography>
+          <Typography variant="subtitle1" className={classes.subtitle}>
+            Our website is under maintenance. We will be back shortly
+          </Typography>
         </div>
       </div>
     );

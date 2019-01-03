@@ -25,9 +25,9 @@ class Parent extends React.Component {
   render() {
     const title = brand.name;
     const description = brand.desc;
-    const { classes } = this.props;
+    const { classes, history } = this.props;
     // Get Path Location
-    let parts = this.props.history.location.pathname.split('/');
+    let parts = history.location.pathname.split('/');
     const place = parts[parts.length - 1];
     parts = parts.slice(1, parts.length - 1);
     const menuItems = MenuContent
@@ -48,7 +48,10 @@ class Parent extends React.Component {
           </Button>
         );
       }
-      return (<Typography className={classes.title} variant="h6"> { item.name } </Typography>);
+      return (
+        <Typography className={classes.title} variant="h6">
+          { item.name }
+        </Typography>);
     });
 
     return (

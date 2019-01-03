@@ -58,10 +58,11 @@ class HeaderMenu extends React.Component {
   };
 
   turnMode = mode => {
+    const { changeMode } = this.props;
     if (mode === 'light') {
-      this.props.changeMode('dark');
+      changeMode('dark');
     } else {
-      this.props.changeMode('light');
+      changeMode('light');
     }
   };
 

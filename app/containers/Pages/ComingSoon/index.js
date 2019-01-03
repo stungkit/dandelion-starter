@@ -25,10 +25,12 @@ class ComingSoon extends React.Component {
       [name]: event.target.value,
     });
   };
+
   render() {
     const title = brand.name + ' - Coming Soon';
     const description = brand.desc;
     const { classes, deco } = this.props;
+    const { email } = this.state;
     return (
       <div className={classes.rootFull}>
         <Helmet>
@@ -53,7 +55,7 @@ class ComingSoon extends React.Component {
               <div className={classes.brandCenter}>
                 <div className={classes.brand}>
                   <img src={logo} alt={brand.name} />
-                  <h3>{brand.name}</h3>
+                  {brand.name}
                 </div>
               </div>
               <Typography variant="h2" className={classes.titleGradient} gutterBottom>
@@ -70,7 +72,7 @@ class ComingSoon extends React.Component {
                       id="standard-name"
                       label="Email"
                       className={classes.textField}
-                      value={this.state.email}
+                      value={email}
                       onChange={this.handleChange('email')}
                       margin="normal"
                     />

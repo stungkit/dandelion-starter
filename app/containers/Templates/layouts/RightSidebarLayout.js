@@ -20,6 +20,7 @@ class RightSidebarLayout extends React.Component {
       children,
       toggleDrawer,
       sidebarOpen,
+      history,
       loadTransition,
       pageLoaded,
       mode,
@@ -44,7 +45,7 @@ class RightSidebarLayout extends React.Component {
           changeMode={changeMode}
           mode={mode}
           title={place}
-          history={this.props.history}
+          history={history}
           openGuide={handleOpenGuide}
         />
         <main className={classNames(classes.content, !sidebarOpen ? classes.contentPaddingRight : '')} id="mainContent">
@@ -56,10 +57,10 @@ class RightSidebarLayout extends React.Component {
             horizontalMenu={false}
           />
           <section className={classNames(classes.mainWrap, classes.sidebarLayout)}>
-            {titleException.indexOf(this.props.history.location.pathname) < 0 && (
+            {titleException.indexOf(history.location.pathname) < 0 && (
               <div className={classes.pageTitle}>
                 <Typography component="h4" className={bgPosition === 'header' ? classes.darkTitle : classes.lightTitle} variant="h4">{place}</Typography>
-                <BreadCrumb separator=" / " theme={bgPosition === 'header' ? 'dark' : 'light'} location={this.props.history.location} />
+                <BreadCrumb separator=" / " theme={bgPosition === 'header' ? 'dark' : 'light'} location={history.location} />
               </div>
             )}
             { !pageLoaded && (<img src="/images/spinner.gif" alt="spinner" className={classes.circularProgress} />) }

@@ -28,9 +28,10 @@ class Corporate extends React.Component {
 
   render() {
     const { classes, children } = this.props;
+    const { transform } = this.state;
     return (
       <div className={classes.appFrameLanding} id="mainContent">
-        <HeaderLanding turnDarker={this.state.transform > 30} />
+        <HeaderLanding turnDarker={transform > 30} />
         {children}
         <Footer />
       </div>

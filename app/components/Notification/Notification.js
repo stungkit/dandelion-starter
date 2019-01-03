@@ -15,10 +15,11 @@ const styles = theme => ({
 
 class Notification extends React.Component {
   handleClose = (event, reason) => {
+    const { close } = this.props;
     if (reason === 'clickaway') {
       return;
     }
-    this.props.close('crudTableDemo');
+    close('crudTableDemo');
   };
 
   render() {

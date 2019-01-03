@@ -19,7 +19,7 @@ class ReduxForm extends React.Component {
   showResult(values) {
     setTimeout(() => {
       this.setState({ valueForm: values });
-      window.alert(`You submitted:\n\n${this.state.valueForm}`);
+      window.alert(`You submitted:\n\n${this.state.valueForm}`); // eslint-disable-line
     }, 500); // simulate server latency
   }
 

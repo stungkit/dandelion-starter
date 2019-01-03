@@ -19,8 +19,9 @@ import styles from './sidebar-jss';
 
 class MainMenu extends React.Component {
   handleClick() {
-    this.props.toggleDrawerOpen();
-    this.props.loadTransition(false);
+    const { toggleDrawerOpen, loadTransition } = this.props;
+    toggleDrawerOpen();
+    loadTransition(false);
   }
 
   render() {
@@ -45,11 +46,11 @@ class MainMenu extends React.Component {
               }
               onClick={() => openSubMenu(item.key, item.keyParent)}
             >
-              {item.icon &&
+              {item.icon && (
                 <ListItemIcon className={classes.icon}>
                   <Ionicon icon={item.icon} />
                 </ListItemIcon>
-              }
+              )}
               <ListItemText classes={{ primary: classes.primary }} inset primary={item.name} />
               { open.indexOf(item.key) > -1 ? <ExpandLess /> : <ExpandMore /> }
             </ListItem>
@@ -69,7 +70,8 @@ class MainMenu extends React.Component {
             </Collapse>
           </div>
         );
-      } else if (item.title) {
+      }
+      if (item.title) {
         return (
           <ListSubheader
             disableSticky
@@ -92,15 +94,15 @@ class MainMenu extends React.Component {
           to={item.link}
           onClick={() => this.handleClick()}
         >
-          {item.icon &&
+          {item.icon && (
             <ListItemIcon className={classes.icon}>
               <Ionicon icon={item.icon} />
             </ListItemIcon>
-          }
+          )}
           <ListItemText classes={{ primary: classes.primary }} inset primary={item.name} />
-          {item.badge &&
+          {item.badge && (
             <Chip color="primary" label={item.badge} className={classes.badge} />
-          }
+          )}
         </ListItem>
       );
     });

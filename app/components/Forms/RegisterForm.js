@@ -45,7 +45,8 @@ class RegisterForm extends React.Component {
   };
 
   handleClickShowPassword = () => {
-    this.setState({ showPassword: !this.state.showPassword });
+    const { showPassword } = this.state;
+    this.setState({ showPassword: !showPassword });
   };
 
   handleMouseDownPassword = event => {
@@ -93,7 +94,7 @@ class RegisterForm extends React.Component {
             Lorem ipsum dolor sit amet
           </Typography>
           <Tabs
-            value={this.state.tab}
+            value={tab}
             onChange={this.handleChangeTab}
             indicatorColor="secondary"
             textColor="secondary"
@@ -103,7 +104,7 @@ class RegisterForm extends React.Component {
             <Tab label="With Email" />
             <Tab label="With Social Media" />
           </Tabs>
-          {tab === 0 &&
+          {tab === 0 && (
             <section className={classes.formWrap}>
               <form onSubmit={handleSubmit}>
                 <div>
@@ -169,8 +170,8 @@ class RegisterForm extends React.Component {
                 </div>
               </form>
             </section>
-          }
-          {tab === 1 &&
+          )}
+          {tab === 1 && (
             <section className={classes.socmedFull}>
               <Button fullWidth variant="outlined" size="large" className={classes.redBtn} type="button">
                 <AllInclusive className={classNames(classes.leftIcon, classes.iconSmall)} />
@@ -185,7 +186,7 @@ class RegisterForm extends React.Component {
                 Socmed 3
               </Button>
             </section>
-          }
+          )}
         </Paper>
       </Fragment>
     );

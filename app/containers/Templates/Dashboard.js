@@ -19,20 +19,21 @@ class Dashboard extends React.Component {
   };
 
   componentDidMount = () => {
+    const { history, initialOpen, loadTransition } = this.props;
     // Scroll content to top
     window.addEventListener('scroll', this.handleScroll);
 
     // Set expanded sidebar menu
-    const currentPath = this.props.history.location.pathname;
-    this.props.initialOpen(currentPath);
+    const currentPath = history.location.pathname;
+    initialOpen(currentPath);
     // Play page transition
-    this.props.loadTransition(true);
+    loadTransition(true);
 
     // Execute all arguments when page changes
-    this.unlisten = this.props.history.listen(() => {
+    this.unlisten = history.listen(() => {
       window.scrollTo(0, 0);
       setTimeout(() => {
-        this.props.loadTransition(true);
+        loadTransition(true);
       }, 500);
     });
   }
@@ -66,6 +67,7 @@ class Dashboard extends React.Component {
       loadTransition,
       pageLoaded,
       mode,
+      history,
       gradient,
       deco,
       bgPosition,
@@ -74,7 +76,7 @@ class Dashboard extends React.Component {
     } = this.props;
     const { openGuide, transform } = this.state;
     const titleException = ['/app', '/app/crm-dashboard', '/app/crypto-dashboard'];
-    const parts = this.props.history.location.pathname.split('/');
+    const parts = history.location.pathname.split('/');
     const place = parts[parts.length - 1].replace('-', ' ');
     return (
       <div
@@ -90,7 +92,7 @@ class Dashboard extends React.Component {
         { /* Left Sidebar Layout */
           layout === 'left-sidebar' && (
             <LeftSidebarLayout
-              history={this.props.history}
+              history={history}
               toggleDrawer={toggleDrawer}
               loadTransition={loadTransition}
               changeMode={changeMode}
@@ -112,7 +114,7 @@ class Dashboard extends React.Component {
         { /* Right Sidebar Layout */
           layout === 'right-sidebar' && (
             <RightSidebarLayout
-              history={this.props.history}
+              history={history}
               toggleDrawer={toggleDrawer}
               loadTransition={loadTransition}
               changeMode={changeMode}
@@ -134,7 +136,7 @@ class Dashboard extends React.Component {
         { /* Top Bar with Dropdown Menu */
           layout === 'top-navigation' && (
             <DropMenuLayout
-              history={this.props.history}
+              history={history}
               toggleDrawer={toggleDrawer}
               loadTransition={loadTransition}
               changeMode={changeMode}
@@ -156,7 +158,7 @@ class Dashboard extends React.Component {
         { /* Top Bar with Mega Menu */
           layout === 'mega-menu' && (
             <MegaMenuLayout
-              history={this.props.history}
+              history={history}
               toggleDrawer={toggleDrawer}
               loadTransition={loadTransition}
               changeMode={changeMode}

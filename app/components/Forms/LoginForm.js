@@ -24,7 +24,7 @@ import Hidden from '@material-ui/core/Hidden';
 import brand from 'dan-api/dummy/brand';
 import logo from 'dan-images/logo.svg';
 import styles from './user-jss';
-import { ContentDivider } from './../Divider';
+import { ContentDivider } from '../Divider';
 
 // validation functions
 const required = value => (value == null ? 'Required' : undefined);
@@ -40,7 +40,8 @@ class LoginForm extends React.Component {
   }
 
   handleClickShowPassword = () => {
-    this.setState({ showPassword: !this.state.showPassword });
+    const { showPassword } = this.state;
+    this.setState({ showPassword: !showPassword });
   };
 
   handleMouseDownPassword = event => {
@@ -55,6 +56,7 @@ class LoginForm extends React.Component {
       submitting,
       deco,
     } = this.props;
+    const { showPassword } = this.state;
     return (
       <Fragment>
         <Hidden mdUp>
@@ -119,7 +121,7 @@ class LoginForm extends React.Component {
                   <Field
                     name="password"
                     component={TextField}
-                    type={this.state.showPassword ? 'text' : 'password'}
+                    type={showPassword ? 'text' : 'password'}
                     label="Your Password"
                     InputProps={{
                       endAdornment: (
@@ -129,7 +131,7 @@ class LoginForm extends React.Component {
                             onClick={this.handleClickShowPassword}
                             onMouseDown={this.handleMouseDownPassword}
                           >
-                            {this.state.showPassword ? <VisibilityOff /> : <Visibility />}
+                            {showPassword ? <VisibilityOff /> : <Visibility />}
                           </IconButton>
                         </InputAdornment>
                       )

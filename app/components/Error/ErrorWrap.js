@@ -42,7 +42,7 @@ const styles = theme => ({
     borderRadius: 2,
   },
   button: {
-    marginTop: 50
+    marginTop: 24
   }
 });
 

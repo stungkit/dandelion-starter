@@ -25,7 +25,7 @@ class BasicTable extends Component {
           </div>
         </PapperBlock>
         <PapperBlock title="Table" whiteBg icon="ios-menu-outline" desc="UI Table when no data to be shown">
-          <div >
+          <div>
             <StrippedTable />
           </div>
         </PapperBlock>
