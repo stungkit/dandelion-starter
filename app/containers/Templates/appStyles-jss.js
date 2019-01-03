@@ -23,11 +23,9 @@ const styles = theme => ({
   },
   appFrameInner: {
     ...appFrame,
-    backgroundColor: theme.palette.background.default,
   },
   appFrameOuter: {
     ...appFrame,
-    backgroundColor: theme.palette.background.default
   },
   appFrameLanding: {
     backgroundColor: theme.palette.background.default,
@@ -50,7 +48,6 @@ const styles = theme => ({
     flexDirection: 'row',
   },
   content: {
-    backgroundColor: theme.palette.background.default,
     width: '100%',
     padding: theme.spacing.unit * 2,
     minHeight: '100%',
@@ -77,15 +74,23 @@ const styles = theme => ({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  bgWrap: {
+    position: 'fixed',
+    background: theme.palette.background.default,
+    width: '100%',
+    height: '100%',
+    top: 0,
+    left: 0,
+  },
   headerBg: {},
   halfBg: {},
   fullBg: {},
   bgbar: {
     backgroundAttachment: 'fixed',
     width: '100%',
-    position: 'fixed',
     top: 0,
     left: 0,
+    position: 'absolute',
     '&$headerBg': {
       height: 64
     },

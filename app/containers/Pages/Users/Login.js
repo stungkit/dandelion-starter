@@ -12,9 +12,10 @@ class Login extends React.Component {
   }
 
   submitForm(values) {
+    const { valueForm } = this.state;
     setTimeout(() => {
       this.setState({ valueForm: values });
-      console.log(`You submitted:\n\n${this.state.valueForm}`);
+      console.log(`You submitted:\n\n${valueForm}`);
       window.location.href = '/app';
     }, 500); // simulate server latency
   }

@@ -41,7 +41,8 @@ class GuideSlider extends React.Component {
   };
 
   handleClose = () => {
-    this.props.closeGuide();
+    const { closeGuide } = this.props;
+    closeGuide();
     this.setState({ activeStepSwipe: 0 });
   }
 
@@ -67,7 +68,7 @@ class GuideSlider extends React.Component {
         <DialogContent className={classes.rootContent}>
           <SwipeableViews
             axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-            index={this.state.activeStepSwipe}
+            index={activeStepSwipe}
             onChangeIndex={this.handleStepChangeSwipe}
             enableMouseEvents
           >
@@ -100,12 +101,12 @@ class GuideSlider extends React.Component {
                 </Button>
               )
             }
-            backButton={
+            backButton={(
               <Button size="small" onClick={this.handleBackSwipe} disabled={activeStepSwipe === 0}>
                 {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
                 Back
               </Button>
-            }
+            )}
           />
         </DialogContent>
       </Dialog>

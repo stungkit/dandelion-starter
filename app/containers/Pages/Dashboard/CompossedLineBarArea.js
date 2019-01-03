@@ -35,8 +35,9 @@ const color = ({
 });
 
 function CompossedLineBarArea(props) {
+  const { classes } = props;
   return (
-    <div className={props.classes.chartFluid}>
+    <div className={classes.chartFluid}>
       <ResponsiveContainer>
         <ComposedChart
           width={800}

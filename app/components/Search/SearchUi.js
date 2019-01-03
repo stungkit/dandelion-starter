@@ -8,7 +8,7 @@ import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
 import MenuItem from '@material-ui/core/MenuItem';
 import { withStyles } from '@material-ui/core/styles';
-import suggestions from 'dan-api/ui/menu';
+import suggestionsApi from 'dan-api/ui/menu';
 import styles from './search-jss';
 
 const menu = [];
@@ -68,17 +68,15 @@ function getSuggestions(value) {
   const inputValue = value.trim().toLowerCase();
   const inputLength = inputValue.length;
   let count = 0;
-  return inputLength === 0 ?
-    [] : menu.filter(suggestion => {
-      const keep =
-        count < 5 && suggestion.name.toLowerCase().slice(0, inputLength) === inputValue;
+  return inputLength === 0 ? [] : menu.filter(suggestion => {
+    const keep = count < 5 && suggestion.name.toLowerCase().slice(0, inputLength) === inputValue;
 
-      if (keep) {
-        count += 1;
-      }
+    if (keep) {
+      count += 1;
+    }
 
-      return keep;
-    });
+    return keep;
+  });
 }
 
 class SearchUi extends React.Component {
@@ -88,7 +86,7 @@ class SearchUi extends React.Component {
   };
 
   componentDidMount() {
-    suggestions.map(item => {
+    suggestionsApi.map(item => {
       if (item.child) {
         item.child.map(itemChild => {
           if (itemChild.link) {
@@ -120,13 +118,15 @@ class SearchUi extends React.Component {
   };
 
   handleSuggestionSelected = (event, { suggestion, method }) => {
+    const { history } = this.props;
     if (method === 'enter') {
-      this.props.history.push(suggestion.link);
+      history.push(suggestion.link);
     }
   }
 
   render() {
     const { classes } = this.props;
+    const { suggestions, value } = this.state;
 
     return (
       <Autosuggest
@@ -137,7 +137,7 @@ class SearchUi extends React.Component {
           suggestion: classes.suggestion,
         }}
         renderInputComponent={renderInput}
-        suggestions={this.state.suggestions}
+        suggestions={suggestions}
         onSuggestionsFetchRequested={this.handleSuggestionsFetchRequested}
         onSuggestionsClearRequested={this.handleSuggestionsClearRequested}
         renderSuggestionsContainer={renderSuggestionsContainer}
@@ -148,7 +148,7 @@ class SearchUi extends React.Component {
         inputProps={{
           classes,
           placeholder: 'Search Ui',
-          value: this.state.value,
+          value,
           onChange: this.handleChange,
         }}
       />

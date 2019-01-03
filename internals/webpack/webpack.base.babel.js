@@ -28,6 +28,20 @@ module.exports = options => ({
   optimization: options.optimization,
   module: {
     rules: [
+      /*
+        Disabled eslint by default.
+        You can enable it to maintain and keep clean your code.
+        NOTE: By enable eslint running app process at beginning will slower
+      */
+    //  {
+    //    enforce: 'pre',
+    //    test: /\.js?$/,
+    //    exclude: [/node_modules/],
+    //    loader: 'eslint-loader',
+    //    options: {
+    //      quiet: true,
+    //    }
+    //  },
       {
         test: /\.js$/, // Transform all .js files required somewhere with Babel
         exclude: /node_modules/,
@@ -97,28 +111,35 @@ module.exports = options => ({
               limit: 10 * 1024,
             },
           },
-          {
-            loader: 'image-webpack-loader',
-            options: {
-              mozjpeg: {
-                enabled: false,
-                // NOTE: mozjpeg is disabled as it causes errors in some Linux environments
-                // Try enabling it in your environment by switching the config to:
-                // enabled: true,
-                // progressive: true,
-              },
-              gifsicle: {
-                interlaced: false,
-              },
-              optipng: {
-                optimizationLevel: 7,
-              },
-              pngquant: {
-                quality: '65-90',
-                speed: 4,
-              },
-            },
-          },
+          /*
+            Disabled image compression by default,
+            due error in windows 10 because libpng not available.
+            The libpng avaible on Linux and Mac system only.
+            NOTE: To enable this, first you need to install image-webpack-loader.
+            npm install -i image-webpack-loader --save
+          */
+          //  {
+          //    loader: 'image-webpack-loader',
+          //    options: {
+          //      mozjpeg: {
+          //        enabled: false,
+          //        // NOTE: mozjpeg is disabled as it causes errors in some Linux environments
+          //        // Try enabling it in your environment by switching the config to:
+          //        // enabled: true,
+          //        // progressive: true,
+          //      },
+          //      gifsicle: {
+          //        interlaced: false,
+          //      },
+          //      optipng: {
+          //        optimizationLevel: 7,
+          //      },
+          //      pngquant: {
+          //        quality: '65-90',
+          //        speed: 4,
+          //      },
+          //    },
+          //  },
         ],
       },
       {
@@ -135,6 +156,9 @@ module.exports = options => ({
         },
       },
     ],
+  },
+  node: {
+    fs: 'empty'
   },
   plugins: options.plugins.concat([
     // Always expose NODE_ENV to webpack, in order to use `process.env.NODE_ENV`
@@ -159,7 +183,6 @@ module.exports = options => ({
       'dan-components': path.resolve(__dirname, '../../app/components/'),
       'dan-actions': path.resolve(__dirname, '../../app/actions/'),
       'dan-styles': path.resolve(__dirname, '../../app/styles/components/'),
-      'dan-helpers': path.resolve(__dirname, '../../app/styles/helpers/'),
       'dan-api': path.resolve(__dirname, '../../app/api/'),
       'dan-images': path.resolve(__dirname, '../../public/images/'),
       'dan-vendor': path.resolve(__dirname, '../../node_modules/'),

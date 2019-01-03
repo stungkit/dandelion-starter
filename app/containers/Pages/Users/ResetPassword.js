@@ -4,7 +4,7 @@ import brand from 'dan-api/dummy/brand';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { ResetForm } from 'dan-components';
-import styles from './../../../components/Forms/user-jss';
+import styles from '../../../components/Forms/user-jss';
 
 class ResetPassword extends React.Component {
   state = {
@@ -14,7 +14,7 @@ class ResetPassword extends React.Component {
   submitForm(values) {
     setTimeout(() => {
       this.setState({ valueForm: values });
-      console.log(`You submitted:\n\n${this.state.valueForm}`);
+      console.log(`You submitted:\n\n${this.state.valueForm}`); // eslint-disable-line
     }, 500); // simulate server latency
   }
 

@@ -31,8 +31,9 @@ class UserMenu extends React.Component {
   };
 
   handleMenu = menu => (event) => {
+    const { openMenu } = this.state;
     this.setState({
-      openMenu: this.state.openMenu === menu ? null : menu,
+      openMenu: openMenu === menu ? null : menu,
       anchorEl: event.currentTarget
     });
   };

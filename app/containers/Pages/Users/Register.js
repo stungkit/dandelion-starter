@@ -14,7 +14,7 @@ class Register extends React.Component {
   submitForm(values) {
     setTimeout(() => {
       this.setState({ valueForm: values });
-      console.log(`You submitted:\n\n${this.state.valueForm}`);
+      console.log(`You submitted:\n\n${this.state.valueForm}`); // eslint-disable-line
       window.location.href = '/app';
     }, 500); // simulate server latency
   }

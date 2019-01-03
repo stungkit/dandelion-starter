@@ -16,10 +16,11 @@ class Blog extends React.Component {
   };
 
   componentDidMount = () => {
+    const { history } = this.props;
     // Scroll content to top
     window.addEventListener('scroll', this.handleScroll);
     // Execute all arguments when page changes
-    this.unlisten = this.props.history.listen(() => {
+    this.unlisten = history.listen(() => {
       window.scrollTo(0, 0);
     });
   }
@@ -52,6 +53,7 @@ class Blog extends React.Component {
       gradient,
       deco,
       layout,
+      history,
       changeMode,
       toggleDrawer,
       sidebarOpen,
@@ -74,7 +76,7 @@ class Blog extends React.Component {
           fixed={transform > 64}
           changeMode={changeMode}
           mode={mode}
-          history={this.props.history}
+          history={history}
           openGuide={this.handleOpenGuide}
           toggleDrawerOpen={toggleDrawer}
           openMobileNav={sidebarOpen}

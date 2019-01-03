@@ -53,17 +53,15 @@ function StrippedTable(props) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {data.map(n =>
-              ([
-                <TableRow key={n.id}>
-                  <TableCell padding="dense">{n.name}</TableCell>
-                  <TableCell numeric>{n.calories}</TableCell>
-                  <TableCell numeric>{n.fat}</TableCell>
-                  <TableCell numeric>{n.carbs}</TableCell>
-                  <TableCell numeric>{n.protein}</TableCell>
-                </TableRow>
-              ])
-            )}
+            {data.map(n => ([
+              <TableRow key={n.id}>
+                <TableCell padding="dense">{n.name}</TableCell>
+                <TableCell numeric>{n.calories}</TableCell>
+                <TableCell numeric>{n.fat}</TableCell>
+                <TableCell numeric>{n.carbs}</TableCell>
+                <TableCell numeric>{n.protein}</TableCell>
+              </TableRow>
+            ]))}
           </TableBody>
         </Table>
       </div>

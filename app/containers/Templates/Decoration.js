@@ -20,7 +20,8 @@ class Decoration extends React.Component {
     const getBgPosition = position => {
       if (position === 'header') {
         return classes.headerBg;
-      } else if (position === 'half') {
+      }
+      if (position === 'half') {
         return classes.halfBg;
       }
       return classes.fullBg;
@@ -31,15 +32,18 @@ class Decoration extends React.Component {
         return (
           <img src={decorationDark} alt="decoration" className={classes.decorationWave} />
         );
-      } else if (mergeDeco === 'dark-full') {
+      }
+      if (mergeDeco === 'dark-full') {
         return (
           <img src={petalLight} alt="decoration" className={classes.decorationPetal} />
         );
-      } else if (mergeDeco === 'light-half') {
+      }
+      if (mergeDeco === 'light-half') {
         return (
           <img src={decorationLight} alt="decoration" className={classes.decorationWave} />
         );
-      } else if (mergeDeco === 'light-full') {
+      }
+      if (mergeDeco === 'light-full') {
         return (
           <img src={petalLight} alt="decoration" className={classes.decorationPetal} />
         );
@@ -47,15 +51,17 @@ class Decoration extends React.Component {
       return false;
     };
     return (
-      <div
-        className={classNames(
-          classes.bgbar,
-          horizontalMenu && classes.highTop,
-          gradient ? classes.gradientBg : classes.solidBg,
-          getBgPosition(bgPosition),
-        )}
-      >
-        { decoration && renderDecor(mode, bgPosition) }
+      <div className={classes.bgWrap}>
+        <div
+          className={classNames(
+            classes.bgbar,
+            horizontalMenu && classes.highTop,
+            gradient ? classes.gradientBg : classes.solidBg,
+            getBgPosition(bgPosition),
+          )}
+        >
+          { decoration && renderDecor(mode, bgPosition) }
+        </div>
       </div>
     );
   }

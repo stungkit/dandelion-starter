@@ -21,13 +21,24 @@ const ReactBoilerplate = {
        * by listing them here.
        */
       exclude: [
+        '@types/googlemaps',
+        '@types/markerclustererplus',
+        'autosuggest-highlight',
         'chalk',
         'compression',
+        'convert-source-map',
         'cross-env',
+        'dotenv',
+        'etag',
         'express',
+        'fs',
         'ip',
         'minimist',
+        'moment',
         'sanitize.css',
+        'serve-favicon',
+        'slick-carousel',
+        'tunnel-agent'
       ],
 
       /**
@@ -42,10 +53,8 @@ const ReactBoilerplate = {
 
     entry(pkg) {
       const dependencyNames = Object.keys(pkg.dependencies);
-      const exclude =
-        pkg.dllPlugin.exclude || ReactBoilerplate.dllPlugin.defaults.exclude;
-      const include =
-        pkg.dllPlugin.include || ReactBoilerplate.dllPlugin.defaults.include;
+      const exclude = pkg.dllPlugin.exclude || ReactBoilerplate.dllPlugin.defaults.exclude;
+      const include = pkg.dllPlugin.include || ReactBoilerplate.dllPlugin.defaults.include;
       const includeDependencies = uniq(dependencyNames.concat(include));
 
       return {

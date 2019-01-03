@@ -30,22 +30,25 @@ class MainMenu extends React.Component {
   }
 
   componentDidMount() {
+    const { open } = this.props;
     setTimeout(() => {
-      this.setState({ active: this.props.open });
+      this.setState({ active: open });
     }, 50);
   }
 
   handleOpenMenu = (event, key, keyParent) => {
-    this.props.openSubMenu(key, keyParent);
+    const { openSubMenu } = this.props;
+    openSubMenu(key, keyParent);
     setTimeout(() => {
       this.setState({
-        openMenu: this.props.open,
+        openMenu: this.props.open, // eslint-disable-line
       });
     }, 50);
   };
 
   handleClose = event => {
-    this.props.closeAll();
+    const { closeAll } = this.props;
+    closeAll();
     if (this.anchorEl.contains(event.target)) {
       return;
     }
@@ -109,7 +112,8 @@ class MainMenu extends React.Component {
             </Popper>
           </div>
         );
-      } else if (item.title) {
+      }
+      if (item.title) {
         return (
           <ListSubheader component="div" key={index.toString()} className={classes.title}>{item.name}</ListSubheader>
         );

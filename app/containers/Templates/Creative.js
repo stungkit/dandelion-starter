@@ -35,10 +35,11 @@ class Parallax extends React.Component {
       children,
       gradient,
     } = this.props;
+    const { transform } = this.state;
     return (
       <div className={classNames(classes.appFrameSlider, gradient ? classes.gradientBg : classes.solidBg)}>
         <Hidden only="lg">
-          <HeaderLanding turnDarker={this.state.transform > 30} />
+          <HeaderLanding turnDarker={transform > 30} />
         </Hidden>
         {children}
       </div>

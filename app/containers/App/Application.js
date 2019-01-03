@@ -14,9 +14,9 @@ import {
 
 class Application extends React.Component {
   render() {
-    const { changeMode } = this.props;
+    const { changeMode, history } = this.props;
     return (
-      <Dashboard history={this.props.history} changeMode={changeMode}>
+      <Dashboard history={history} changeMode={changeMode}>
         <Switch>
           <Route exact path="/app" component={BlankPage} />
           <Route path="/app/dashboard" component={DashboardPage} />
